@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gulnaz Khatib — Personal Blog &amp; Knowledge Space</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Playfair Display (Classic Serif) & Inter (Clean Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+          colors: {
+            forest: {
+              50: '#F2F6F4',
+              100: '#E3ECE7',
+              200: '#C5D7CE',
+              300: '#9CB8AA',
+              400: '#729785',
+              500: '#5C7C6B',
+              600: '#456354',
+              700: '#355043',
+              800: '#2C4A3E',
+              900: '#1D332A',
+            },
+            cream: {
+              50: '#FFFFFF',
+              100: '#FAF8F5',
+              200: '#F3EFE9',
+              300: '#E5E0D8',
+            },
+            charcoal: {
+              700: '#3B423F',
+              800: '#282E2B',
+              900: '#1E2421',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF8F5;
+      color: #1E2421;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    .prose-blog h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2rem;
+      line-height: 1.25;
+      font-weight: 700;
+      color: #1D332A;
+      margin-top: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .prose-blog h1 {
+        font-size: 2.35rem;
+      }
+    }
+
+    .prose-blog h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      line-height: 1.3;
+      font-weight: 600;
+      color: #2C4A3E;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .prose-blog h3 {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.4;
+      font-weight: 600;
+      color: #1E2421;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .prose-blog p {
+      margin-bottom: 1rem;
+      line-height: 1.78;
+      color: #282E2B;
+    }
+
+    .prose-blog ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .prose-blog ol {
+      list-style-type: decimal;
+      padding-left: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .prose-blog li {
+      margin-bottom: 0.5rem;
+      line-height: 1.72;
+      color: #282E2B;
+    }
+
+    .prose-blog a {
+      color: #2C4A3E;
+      font-weight: 500;
+      text-decoration: underline;
+      text-decoration-color: #9CB8AA;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease, text-decoration-color 0.15s ease;
+    }
+
+    .prose-blog a:hover {
+      color: #1D332A;
+      text-decoration-color: #2C4A3E;
+    }
+
+    .prose-blog hr {
+      border: 0;
+      border-top: 1px solid #E5E0D8;
+      margin: 2rem 0;
+    }
+
+    .prose-blog code {
+      background-color: #F3EFE9;
+      color: #1D332A;
+      padding: 0.15rem 0.45rem;
+      border-radius: 0.375rem;
+      font-size: 0.88em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      word-break: break-word;
+    }
+
+    .snippet-box {
+      background-color: #F2F6F4;
+      border: 1px solid #C5D7CE;
+      border-radius: 0.875rem;
+      padding: 1rem 1.25rem;
+      margin: 0.75rem 0 1.25rem 0;
+    }
+
+    .view-section {
+      animation: fadeSlide 0.22s ease-out;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-forest-200 selection:text-forest-900">
+
+  <!-- Toast Notification (for Copy actions) -->
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 bg-forest-800 text-cream-50 px-4 py-3 rounded-xl shadow-lg border border-forest-700 text-sm font-medium">
+    <svg class="w-4 h-4 text-forest-200 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+    <span id="toast-message">Copied to clipboard!</span>
+  </div>
+
+  <!-- Sticky Header & Navigation -->
+  <header class="sticky top-0 z-40 bg-cream-100/95 backdrop-blur-md border-b border-cream-300">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Brand / Custom GK Monogram Logo -->
+        <button type="button" onclick="navigateTo('home')" class="flex items-center gap-3 text-left group focus:outline-none">
+          <svg class="w-12 h-12 sm:w-14 sm:h-14 shrink-0 text-charcoal-900 transition-transform duration-200 group-hover:scale-[1.03]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="GK Gulnaz Khatib Logo">
+            <!-- Outer Serif Capital G -->
+            <path d="M77.5 34.5C72.2 28.2 64.5 24.5 55.2 24.5C37.8 24.5 25.5 38.2 25.5 56.5C25.5 74.8 37.8 88.5 55.5 88.5C64.2 88.5 71.4 85.4 76.2 80.2V62.5H62.5V59.2H84.5V62.5H81.2V88.5H78.2L77.1 82.8C71.5 88.5 63.8 92 54.5 92C33.5 92 18.5 76.8 18.5 56.5C18.5 36.2 33.8 21 54.8 21C63.8 21 71.5 24.2 76.8 28.8L78.2 22.5H81.2V36.5H78.2L77.5 34.5Z" fill="currentColor"/>
+            <!-- Interlocking Serif Capital K -->
+            <path d="M44.5 43.5H54.5V45.4H51.8V56.4L62.6 45.4H59.4V43.5H68.8V45.4H65.8L55.6 55.6L67.4 69.6H70.4V71.5H60.2V69.6H62.6L52.8 58.1L51.8 59.1V69.6H54.5V71.5H44.5V69.6H47.2V45.4H44.5V43.5Z" fill="currentColor"/>
+            <!-- Spaced Out Uppercase Name -->
+            <text x="60" y="109" text-anchor="middle" fill="currentColor" font-family="Inter, system-ui, sans-serif" font-size="8.6" font-weight="500" letter-spacing="2.6">GULNAZ KHATIB</text>
+          </svg>
+          <div class="border-l border-cream-300 pl-3">
+            <span class="font-serif text-lg sm:text-xl font-semibold text-forest-900 tracking-tight block leading-tight">
+              Gulnaz Khatib
+            </span>
+            <span class="text-[11px] text-forest-500 font-medium block mt-0.5">
+              Learning &bull; Creating &bull; Reflecting
+            </span>
+          </div>
+        </button>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-1.5" aria-label="Primary Navigation">
+          <button type="button" onclick="navigateTo('home')" data-nav="home" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium bg-forest-800 text-cream-50 transition-colors">
+            Home
+          </button>
+          <button type="button" onclick="navigateTo('all')" data-nav="all" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-charcoal-800 hover:bg-forest-50 hover:text-forest-800 transition-colors">
+            All Posts
+          </button>
+          <button type="button" onclick="navigateTo('education')" data-nav="education" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-charcoal-800 hover:bg-forest-50 hover:text-forest-800 transition-colors">
+            Education
+          </button>
+          <button type="button" onclick="navigateTo('safety')" data-nav="safety" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-charcoal-800 hover:bg-forest-50 hover:text-forest-800 transition-colors">
+            Tech &amp; Safety
+          </button>
+          <button type="button" onclick="navigateTo('about')" data-nav="about" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-charcoal-800 hover:bg-forest-50 hover:text-forest-800 transition-colors">
+            About
+          </button>
+        </nav>
+
+        <!-- Mobile Hamburger Button -->
+        <div class="md:hidden">
+          <button type="button" id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle Menu" class="p-2.5 rounded-xl text-charcoal-800 hover:bg-cream-200 focus:outline-none">
+            <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation -->
+      <div id="mobile-menu" class="hidden md:hidden pb-4 pt-2 border-t border-cream-300 space-y-1">
+        <button type="button" onclick="navigateTo('home'); toggleMobileMenu()" data-nav="home" class="mobile-nav-btn w-full text-left block px-3.5 py-2.5 rounded-xl text-base font-medium bg-forest-800 text-cream-50">
+          Home
+        </button>
+        <button type="button" onclick="navigateTo('all'); toggleMobileMenu()" data-nav="all" class="mobile-nav-btn w-full text-left block px-3.5 py-2.5 rounded-xl text-base font-medium text-charcoal-800 hover:bg-forest-50">
+          All Posts
+        </button>
+        <button type="button" onclick="navigateTo('education'); toggleMobileMenu()" data-nav="education" class="mobile-nav-btn w-full text-left block px-3.5 py-2.5 rounded-xl text-base font-medium text-charcoal-800 hover:bg-forest-50">
+          Education
+        </button>
+        <button type="button" onclick="navigateTo('safety'); toggleMobileMenu()" data-nav="safety" class="mobile-nav-btn w-full text-left block px-3.5 py-2.5 rounded-xl text-base font-medium text-charcoal-800 hover:bg-forest-50">
+          Tech &amp; Safety
+        </button>
+        <button type="button" onclick="navigateTo('about'); toggleMobileMenu()" data-nav="about" class="mobile-nav-btn w-full text-left block px-3.5 py-2.5 rounded-xl text-base font-medium text-charcoal-800 hover:bg-forest-50">
+          About
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+    <!-- ===================================================================== -->
+    <!-- VIEW 1: FEED / DIRECTORY (Home, All Posts, Education, Tech & Safety)  -->
+    <!-- ===================================================================== -->
+    <div id="view-feed" class="view-section">
+      <!-- Hero Banner (Shown on Home) -->
+      <section id="hero-banner" class="bg-cream-50 rounded-3xl border border-cream-300 p-7 sm:p-11 mb-8 sm:mb-10 shadow-sm relative overflow-hidden">
+        <div class="flex items-center justify-between gap-6">
+          <!-- Left Botanical Olive Leaf Accent -->
+          <svg class="hidden lg:block w-24 h-24 text-forest-500/30 shrink-0 select-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M78 85C58 68 42 45 32 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M42 42C28 40 20 32 18 22C29 22 38 30 42 42Z" fill="currentColor"/>
+            <path d="M52 58C36 58 26 51 22 41C34 40 45 47 52 58Z" fill="currentColor"/>
+            <path d="M64 72C48 74 37 68 32 59C44 57 56 62 64 72Z" fill="currentColor"/>
+            <path d="M40 34C48 22 58 16 68 16C66 27 56 34 40 34Z" fill="currentColor"/>
+            <path d="M51 51C60 39 71 34 81 35C78 46 67 52 51 51Z" fill="currentColor"/>
+          </svg>
+
+          <!-- Centered Hero Copy -->
+          <div class="text-center mx-auto max-w-2xl relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-forest-50 text-forest-800 border border-forest-200 text-xs font-medium mb-4">
+              <span>🌿</span>
+              <span>Personal Knowledge Space</span>
+            </div>
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold text-forest-900 tracking-tight mb-4">
+              Welcome to My Blog!
+            </h1>
+            <p class="text-base sm:text-lg text-charcoal-700 leading-relaxed">
+              A warm welcome to my corner of the internet — a space for learning, creating, reflecting, and growing across disciplines.
+            </p>
+            <!-- GK Monogram Byline -->
+            <div class="mt-5 flex items-center justify-center gap-2.5 text-sm font-medium text-forest-900">
+              <svg class="w-7 h-7 text-charcoal-900" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M77.5 34.5C72.2 28.2 64.5 24.5 55.2 24.5C37.8 24.5 25.5 38.2 25.5 56.5C25.5 74.8 37.8 88.5 55.5 88.5C64.2 88.5 71.4 85.4 76.2 80.2V62.5H62.5V59.2H84.5V62.5H81.2V88.5H78.2L77.1 82.8C71.5 88.5 63.8 92 54.5 92C33.5 92 18.5 76.8 18.5 56.5C18.5 36.2 33.8 21 54.8 21C63.8 21 71.5 24.2 76.8 28.8L78.2 22.5H81.2V36.5H78.2L77.5 34.5Z" fill="currentColor"/>
+                <path d="M44.5 43.5H54.5V45.4H51.8V56.4L62.6 45.4H59.4V43.5H68.8V45.4H65.8L55.6 55.6L67.4 69.6H70.4V71.5H60.2V69.6H62.6L52.8 58.1L51.8 59.1V69.6H54.5V71.5H44.5V69.6H47.2V45.4H44.5V43.5Z" fill="currentColor"/>
+              </svg>
+              <span>By Gulnaz Khatib</span>
+            </div>
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <button type="button" onclick="navigateTo('post-1')" class="px-5 py-2.5 rounded-xl bg-forest-800 hover:bg-forest-700 text-cream-50 text-sm font-medium shadow-sm transition-colors">
+                Start with My First Post
+              </button>
+              <button type="button" onclick="navigateTo('about')" class="px-5 py-2.5 rounded-xl bg-cream-100 hover:bg-cream-200 text-forest-900 text-sm font-medium border border-cream-300 transition-colors">
+                About This Space
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Botanical Olive Leaf Accent -->
+          <svg class="hidden lg:block w-24 h-24 text-forest-500/30 shrink-0 select-none transform scale-x-[-1]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M78 85C58 68 42 45 32 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M42 42C28 40 20 32 18 22C29 22 38 30 42 42Z" fill="currentColor"/>
+            <path d="M52 58C36 58 26 51 22 41C34 40 45 47 52 58Z" fill="currentColor"/>
+            <path d="M64 72C48 74 37 68 32 59C44 57 56 62 64 72Z" fill="currentColor"/>
+            <path d="M40 34C48 22 58 16 68 16C66 27 56 34 40 34Z" fill="currentColor"/>
+            <path d="M51 51C60 39 71 34 81 35C78 46 67 52 51 51Z" fill="currentColor"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Category Header Banner (Shown on All Posts, Education, Tech & Safety) -->
+      <section id="category-banner" class="hidden bg-cream-50 rounded-3xl border border-cream-300 p-7 sm:p-10 mb-8 shadow-sm">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-forest-50 text-forest-800 border border-forest-200 text-xs font-medium mb-3">
+          <span>🌿</span>
+          <span id="category-badge">Archive</span>
+        </div>
+        <h1 id="category-title" class="font-serif text-3xl sm:text-4xl font-bold text-forest-900 tracking-tight mb-3">
+          All Posts
+        </h1>
+        <p id="category-subtitle" class="text-base text-charcoal-700 max-w-2xl leading-relaxed">
+          Browse every reflection, teaching resource, and digital safety guide published here.
+        </p>
+
+        <!-- Interactive Topic Filter Pills (Visible in All Posts view) -->
+        <div id="topic-filters" class="hidden mt-6 pt-5 border-t border-cream-300 flex flex-wrap items-center gap-2">
+          <button type="button" onclick="filterTopic('all')" data-topic="all" class="topic-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-forest-800 text-cream-50 border border-forest-800 transition-colors">
+            All (4)
+          </button>
+          <button type="button" onclick="filterTopic('education')" data-topic="education" class="topic-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-50 text-charcoal-700 border border-cream-300 hover:border-forest-500 transition-colors">
+            Education (2)
+          </button>
+          <button type="button" onclick="filterTopic('safety')" data-topic="safety" class="topic-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-50 text-charcoal-700 border border-cream-300 hover:border-forest-500 transition-colors">
+            Tech &amp; Safety (1)
+          </button>
+          <button type="button" onclick="filterTopic('reflections')" data-topic="reflections" class="topic-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-50 text-charcoal-700 border border-cream-300 hover:border-forest-500 transition-colors">
+            Reflections (1)
+          </button>
+        </div>
+      </section>
+
+      <!-- Section Heading Bar -->
+      <div class="flex items-center justify-between mb-6">
+        <h2 id="grid-heading" class="font-serif text-2xl font-semibold text-forest-900">
+          Latest Writings &amp; Resources
+        </h2>
+        <span id="post-count-label" class="text-xs font-medium text-forest-500 bg-forest-50 border border-forest-200 px-3 py-1 rounded-full">
+          4 Posts
+        </span>
+      </div>
+
+      <!-- 2-Column Post Cards Grid -->
+      <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Card 1: My First Post -->
+        <article data-category="reflections" class="post-card bg-cream-50 rounded-2xl border border-cream-300 p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-forest-400 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-charcoal-700 mb-3">
+              <span class="px-2.5 py-1 rounded-full bg-forest-50 text-forest-800 border border-forest-200 font-medium">
+                getting-started &bull; blog
+              </span>
+              <time datetime="2025-07-10" class="text-charcoal-700/80">July 10, 2025</time>
+            </div>
+            <h3 class="font-serif text-xl sm:text-2xl font-semibold text-forest-900 mb-3 leading-snug">
+              <button type="button" onclick="navigateTo('post-1')" class="text-left hover:text-forest-600 transition-colors">
+                My First Post
+              </button>
+            </h3>
+            <p class="text-sm sm:text-base text-charcoal-700 leading-relaxed mb-5">
+              A warm welcome to my corner of the internet — a space for learning, creating, reflecting, and growing across disciplines.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-cream-200 flex items-center justify-between gap-3">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[11px] px-2 py-0.5 rounded-md bg-cream-200 text-charcoal-700">#first-post</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-md bg-cream-200 text-charcoal-700">#reflections</span>
+            </div>
+            <button type="button" onclick="navigateTo('post-1')" class="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-forest-800 hover:bg-forest-700 text-cream-50 text-xs sm:text-sm font-medium transition-colors">
+              <span>Read Post</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 2: AI in Education - For Teachers -->
+        <article data-category="education" class="post-card bg-cream-50 rounded-2xl border border-cream-300 p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-forest-400 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-charcoal-700 mb-3">
+              <span class="px-2.5 py-1 rounded-full bg-forest-50 text-forest-800 border border-forest-200 font-medium">
+                blog &bull; education
+              </span>
+              <time datetime="2025-08-08" class="text-charcoal-700/80">August 8, 2025</time>
+            </div>
+            <h3 class="font-serif text-xl sm:text-2xl font-semibold text-forest-900 mb-3 leading-snug">
+              <button type="button" onclick="navigateTo('post-2')" class="text-left hover:text-forest-600 transition-colors">
+                AI in Education - For Teachers
+              </button>
+            </h3>
+            <p class="text-sm sm:text-base text-charcoal-700 leading-relaxed mb-5">
+              This blog explores useful AI tools and solutions for teachers—covering lesson planning, gamification, assessments, whiteboards, and practical prompt engineering techniques.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-cream-200 flex items-center justify-between gap-3">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[11px] px-2 py-0.5 rounded-md bg-cream-200 text-charcoal-700">#teaching</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-md bg-cream-200 text-charcoal-700">#AI in Education</span>
+            </div>
+            <button type="button" onclick="navigateTo('post-2')" class="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-forest-800 hover:bg-forest-700 text-cream-50 text-xs sm:text-sm font-medium transition-colors">
+              <span>Read Post</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 3: Parental Controls - Safe Browsing for Kids -->
+        <article data-category="safety" class="post-card bg-cream-50 rounded-2xl border border-cream-300 p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-forest-400 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-charcoal-700 mb-3">
+              <span class="px-2.5 py-1 rounded-full bg-forest-50 text-forest-800 border border-forest-200 font-medium">
+                blog
+              </span>
+              <time datetime="2025-03-16" class="text-charcoal-700/80">March 16, 2025</time>
+            </div>
+            <h3 class="font-serif text-xl sm:text-2xl font-semibold text-forest-900 mb-3 leading-snug">
+              <button type="button" onclick="navigateTo('post-3')" class="text-left hover:text-forest-600 transition-colors">
+                Parental Controls - How to setup Safe Browsing for Kids
+              </button>
+            </h3>
+            <p class="text-sm sm:text-base text-charcoal-700 leading-relaxed mb-5">
+              How to block inappropriate content and malware at your home or office Wi-Fi connected devices — a practical step-by-step guardrail checklist for working parents.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-cream-200 flex items-center justify-between gap-3">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[11px] px-2 py-0.5 rounded-md bg-cream-200 text-charcoal-700">#parenting control</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-md bg-cream-200 text-charcoal-700">#kids safe browsing</span>
+            </div>
+            <button type="button" onclick="navigateTo('post-3')" class="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-forest-800 hover:bg-forest-700 text-cream-50 text-xs sm:text-sm font-medium transition-colors">
+              <span>Read Post</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 4: IGCSE Computer Science 0478 -->
+        <article data-category="education" class="post-card bg-cream-50 rounded-2xl border border-cream-300 p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-forest-400 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-charcoal-700 mb-3">
+              <span class="px-2.5 py-1 rounded-full bg-forest-50 text-forest-800 border border-forest-200 font-medium">
+                blog &bull; education
+              </span>
+              <time datetime="2025-08-08" class="text-charcoal-700/80">August 8, 2025</time>
+            </div>
+            <h3 class="font-serif text-xl sm:text-2xl font-semibold text-forest-900 mb-3 leading-snug">
+              <button type="button" onclick="navigateTo('post-4')" class="text-left hover:text-forest-600 transition-colors">
+                IGCSE Computer Science 0478
+              </button>
+            </h3>
+            <p class="text-sm sm:text-base text-charcoal-700 leading-relaxed mb-5">
+              Dedicated Grade 9 IGCSE Computer Science (0478) study notes, structured curriculum materials, and Notion resource hub for students.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-cream-200 flex items-center justify-between gap-3">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[11px] px-2 py-0.5 rounded-md bg-cream-200 text-charcoal-700">#learning</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-md bg-cream-200 text-charcoal-700">#Computer Science</span>
+            </div>
+            <button type="button" onclick="navigateTo('post-4')" class="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-forest-800 hover:bg-forest-700 text-cream-50 text-xs sm:text-sm font-medium transition-colors">
+              <span>Read Post</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- VIEW 2: ABOUT VIEW                                                    -->
+    <!-- ===================================================================== -->
+    <section id="view-about" class="view-section hidden max-w-3xl mx-auto">
+      <div class="bg-cream-50 rounded-3xl border border-cream-300 p-7 sm:p-12 shadow-sm">
+        <div class="flex items-center gap-4 mb-6">
+          <svg class="w-16 h-16 shrink-0 text-charcoal-900" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="GK Monogram">
+            <path d="M77.5 34.5C72.2 28.2 64.5 24.5 55.2 24.5C37.8 24.5 25.5 38.2 25.5 56.5C25.5 74.8 37.8 88.5 55.5 88.5C64.2 88.5 71.4 85.4 76.2 80.2V62.5H62.5V59.2H84.5V62.5H81.2V88.5H78.2L77.1 82.8C71.5 88.5 63.8 92 54.5 92C33.5 92 18.5 76.8 18.5 56.5C18.5 36.2 33.8 21 54.8 21C63.8 21 71.5 24.2 76.8 28.8L78.2 22.5H81.2V36.5H78.2L77.5 34.5Z" fill="currentColor"/>
+            <path d="M44.5 43.5H54.5V45.4H51.8V56.4L62.6 45.4H59.4V43.5H68.8V45.4H65.8L55.6 55.6L67.4 69.6H70.4V71.5H60.2V69.6H62.6L52.8 58.1L51.8 59.1V69.6H54.5V71.5H44.5V69.6H47.2V45.4H44.5V43.5Z" fill="currentColor"/>
+            <text x="60" y="109" text-anchor="middle" fill="currentColor" font-family="Inter, system-ui, sans-serif" font-size="8.6" font-weight="500" letter-spacing="2.6">GULNAZ KHATIB</text>
+          </svg>
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-forest-500">About the Author</span>
+            <h1 class="font-serif text-3xl sm:text-4xl font-bold text-forest-900">Gulnaz Khatib</h1>
+          </div>
+        </div>
+
+        <div class="prose-blog">
+          <p>
+            I’m <strong>Gulnaz Khatib</strong> — someone who deeply believes in the power of purposeful, value-driven knowledge sharing.
+          </p>
+          <p>
+            This blog isn’t just about one thing. It’s not a niche. It’s not a funnel. It’s <strong>a growing space</strong> — a reflection of who I am and how I hope to contribute meaningfully to the world around me.
+          </p>
+
+          <h2>What You Will Find Here</h2>
+          <ul>
+            <li>Insights on digital safety and conscious tech use</li>
+            <li>Notes and tools for students programming</li>
+            <li>Thoughts for teachers exploring AI in education and modern pedagogy</li>
+            <li>Art projects I once poured my soul into</li>
+            <li>Musings on home, simplicity, and sustainable living</li>
+            <li>Or something entirely new, born out of a moment, a need, or a conversation</li>
+          </ul>
+
+          <h2>My Mission</h2>
+          <p>
+            Because I believe spaces like these matter. Because the internet needs more heart and less noise. Because writing helps me think, and sharing might help someone else too. Because I want to leave behind something useful — not just files and folders, but words and works that live and grow.
+          </p>
+          <p>
+            <strong>Welcome to my world.</strong> 🌿
+          </p>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-cream-300 flex flex-wrap gap-3">
+          <button type="button" onclick="navigateTo('all')" class="px-5 py-2.5 rounded-xl bg-forest-800 hover:bg-forest-700 text-cream-50 text-sm font-medium transition-colors">
+            Explore All Posts
+          </button>
+          <a href="https://github.com/gulnazkhatib/blogsite" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-cream-100 hover:bg-cream-200 text-forest-900 text-sm font-medium border border-cream-300 transition-colors">
+            GitHub Repository &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SINGLE POST 1: MY FIRST POST                                          -->
+    <!-- ===================================================================== -->
+    <article id="view-post-1" class="view-section hidden max-w-3xl mx-auto">
+      <div class="mb-6">
+        <button type="button" onclick="navigateTo('all')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cream-50 hover:bg-cream-200 text-forest-900 text-sm font-medium border border-cream-300 transition-colors">
+          <span>&larr; Back to All Posts</span>
+        </button>
+      </div>
+
+      <div class="bg-cream-50 rounded-3xl border border-cream-300 p-7 sm:p-12 shadow-sm">
+        <header class="pb-6 mb-8 border-b border-cream-300">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-forest-800 mb-3">
+            <span class="px-3 py-1 rounded-full bg-forest-50 border border-forest-200">getting-started</span>
+            <span class="px-3 py-1 rounded-full bg-forest-50 border border-forest-200">blog</span>
+            <span class="text-charcoal-700 ml-1">July 10, 2025</span>
+          </div>
+          <h1 class="font-serif text-3xl sm:text-4xl font-bold text-forest-900 tracking-tight mb-3">
+            My First Post
+          </h1>
+          <p class="text-base text-charcoal-700 italic">
+            A warm welcome to my corner of the internet — a space for learning, creating, reflecting, and growing across disciplines.
+          </p>
+        </header>
+
+        <div class="prose-blog">
+          <h1>Welcome to My Blog!</h1>
+
+          <p>
+            This space has been on my mind and in my heart for a long time — and now, here it is: simple, honest, and open-ended.
+          </p>
+
+          <p>
+            I’m <strong>Gulnaz Khatib</strong> — someone who deeply believes in the power of purposeful, value-driven knowledge sharing.<br />
+            This blog isn’t just about one thing. It’s not a niche. It’s not a funnel. It’s <strong>a growing space</strong> — a reflection of who I am and how I hope to contribute meaningfully to the world around me.
+          </p>
+
+          <h2>What Is This Blog About?</h2>
+
+          <p>It’s hard to define in a line — and that’s exactly how I want it.</p>
+
+          <p>
+            You’ll find resources and reflections here — sometimes <strong>deeply technical</strong>, sometimes <strong>thoughtfully personal</strong>, sometimes <strong>practical</strong>, sometimes just <strong>curious explorations</strong>.
+          </p>
+
+          <p>You might come across:</p>
+
+          <ul>
+            <li>Insights on digital safety and conscious tech use</li>
+            <li>Notes and tools for students programming</li>
+            <li>Thoughts for teachers exploring AI in education and modern pedagogy</li>
+            <li>Art projects I once poured my soul into</li>
+            <li>Musings on home, simplicity, and sustainable living</li>
+            <li>Or something entirely new, born out of a moment, a need, or a conversation</li>
+          </ul>
+
+          <h2>Why Am I Writing Here?</h2>
+
+          <p>
+            Because I believe spaces like these matter.<br />
+            Because the internet needs more heart and less noise.<br />
+            Because writing helps me think, and sharing might help someone else too.<br />
+            Because I want to leave behind something useful — not just files and folders, but words and works that live and grow.
+          </p>
+
+          <h2>Who Is This For?</h2>
+
+          <p>
+            For the curious.<br />
+            For the quiet thinkers.<br />
+            For anyone looking to learn something new or reflect a little more deeply.
+          </p>
+
+          <hr />
+
+          <p>If you’re here, I’m truly grateful.</p>
+
+          <p><strong>Welcome to my world.</strong> 🌿</p>
+        </div>
+
+        <!-- Tags Footer -->
+        <div class="mt-8 pt-6 border-t border-cream-300 flex flex-wrap items-center gap-2">
+          <span class="text-xs font-medium text-charcoal-700 mr-1">Tags:</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#first-post</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#welcome</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#beginnings</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#reflections</span>
+        </div>
+
+        <!-- Previous / Next Navigation -->
+        <div class="mt-8 pt-6 border-t border-cream-300 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <button type="button" onclick="navigateTo('all')" class="px-4 py-3 rounded-xl bg-cream-100 hover:bg-cream-200 text-charcoal-800 text-sm font-medium border border-cream-300 text-left transition-colors">
+            &larr; All Posts Directory
+          </button>
+          <button type="button" onclick="navigateTo('post-2')" class="px-4 py-3 rounded-xl bg-forest-800 hover:bg-forest-700 text-cream-50 text-sm font-medium text-right transition-colors">
+            Next Post: AI in Education - For Teachers &rarr;
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================================================================== -->
+    <!-- SINGLE POST 2: AI IN EDUCATION - FOR TEACHERS                         -->
+    <!-- ===================================================================== -->
+    <article id="view-post-2" class="view-section hidden max-w-3xl mx-auto">
+      <div class="mb-6">
+        <button type="button" onclick="navigateTo('all')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cream-50 hover:bg-cream-200 text-forest-900 text-sm font-medium border border-cream-300 transition-colors">
+          <span>&larr; Back to All Posts</span>
+        </button>
+      </div>
+
+      <div class="bg-cream-50 rounded-3xl border border-cream-300 p-7 sm:p-12 shadow-sm">
+        <header class="pb-6 mb-8 border-b border-cream-300">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-forest-800 mb-3">
+            <span class="px-3 py-1 rounded-full bg-forest-50 border border-forest-200">blog</span>
+            <span class="px-3 py-1 rounded-full bg-forest-50 border border-forest-200">education</span>
+            <span class="text-charcoal-700 ml-1">August 8, 2025</span>
+          </div>
+          <h1 class="font-serif text-3xl sm:text-4xl font-bold text-forest-900 tracking-tight">
+            AI in Education - For Teachers
+          </h1>
+        </header>
+
+        <div class="prose-blog">
+          <p>
+            This blog explores useful AI tools and solutions for teachers. I have focused on free, open-source, or freemium options where applicable.
+          </p>
+
+          <h3>1. Planning / Documentation (Lesson plans/activities)</h3>
+          <p>
+            To plan exclusively within a specific book's context or a source, choose <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a>,<br />
+            For general purposes, use <a href="http://magicschool.ai/" target="_blank" rel="noopener noreferrer">Magicschool.ai</a> or any other Generative AI tool(refer to section 4).
+          </p>
+
+          <h3>2. Gamification</h3>
+          <p>
+            <a href="http://www.curipod.com" target="_blank" rel="noopener noreferrer">Curipod</a> (Curipod ppt lessons + kahoot like activities, + activity insights &amp; reports for all students),<br />
+            <a href="http://www.blooket.com" target="_blank" rel="noopener noreferrer">Blooket</a>,<br />
+            <a href="https://quizizz.com/" target="_blank" rel="noopener noreferrer">Quizziz</a>,<br />
+            <a href="https://jeopardylabs.com/" target="_blank" rel="noopener noreferrer">Jeopardy Labs</a>,<br />
+            <a href="http://magicschool.ai/" target="_blank" rel="noopener noreferrer">Magicschool.ai</a>,<br />
+            <a href="http://padlet.com" target="_blank" rel="noopener noreferrer">padlet</a>,<br />
+            slido (a slide extension)
+          </p>
+
+          <h3>3. Quiz/Assessments</h3>
+          <p>
+            <a href="http://www.exam-mate.com" target="_blank" rel="noopener noreferrer">Exam Mate</a>,<br />
+            <a href="http://www.humata.ai" target="_blank" rel="noopener noreferrer">Humata</a>,<br />
+            <a href="http://magicschool.ai/" target="_blank" rel="noopener noreferrer">Magicschool.ai</a>,<br />
+            <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a>,<br />
+            <a href="https://www.socrative.com/" target="_blank" rel="noopener noreferrer">Socrative</a>
+          </p>
+
+          <h3>4. Generative AIs(for asking questions and getting responses)</h3>
+          <p>
+            <a href="http://www.claude.ai" target="_blank" rel="noopener noreferrer">Claude</a>,<br />
+            <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">Gemini</a>,<br />
+            <a href="http://www.chatgpt.com" target="_blank" rel="noopener noreferrer">Chatgpt</a>,<br />
+            <a href="http://www.perplexity.ai" target="_blank" rel="noopener noreferrer">Perplexity</a>,<br />
+            <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Copilot</a>,<br />
+            <a href="https://grok.com/" target="_blank" rel="noopener noreferrer">Grok</a>
+          </p>
+
+          <h3>5. Preparing Presentations/apps/quiz apps</h3>
+          <p>
+            <a href="http://curipod.com" target="_blank" rel="noopener noreferrer">Curipod</a>,<br />
+            <a href="http://magicschool.ai/" target="_blank" rel="noopener noreferrer">Magicschool.ai</a>,<br />
+            <a href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Gamma.app</a>,<br />
+            Slido(An extension for Microsoft PowerPoint and Google Docs),<br />
+            <a href="https://chalkie.ai" target="_blank" rel="noopener noreferrer">Chalkie</a>,<br />
+            <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a>(for creating ppt content restricted to your sources:textbook or curriculum specific, etc),
+          </p>
+
+          <h3>6. All-in-one your own Resource repository (free website can be easily published/shared)</h3>
+          <p>
+            <a href="http://notion.com/" target="_blank" rel="noopener noreferrer">Notion</a>,
+          </p>
+
+          <h3>7. For online classes : whiteboard</h3>
+          <p>
+            <a href="http://notion.com/" target="_blank" rel="noopener noreferrer">Microsoft Whiteboard</a> Free Save-able Whiteboard (saves your whiteboard lifetime),<br />
+            <a href="https://excalidraw.com/" target="_blank" rel="noopener noreferrer">Excalidraw</a> (Free open source)
+          </p>
+
+          <h3>8. For recording classes :</h3>
+          <p>
+            Free and easy video/lesson recording, <a href="https://getsharex.com/" target="_blank" rel="noopener noreferrer">ShareX</a>
+          </p>
+
+          <h3>9. Mind Mapping/Visualizing Free Tool</h3>
+          <p>
+            <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a><br />
+            <a href="http://draw.io" target="_blank" rel="noopener noreferrer">Draw.io</a>
+          </p>
+
+          <h3>10. Voice Typing notes</h3>
+          <p>
+            <a href="https://docs.google.com/document" target="_blank" rel="noopener noreferrer">Google Docs</a> (new blank doc -&gt; Tools -&gt; Voice Typing)
+          </p>
+
+          <h3>11. Audio to Text (Multi-lingual)</h3>
+          <p>
+            <a href="https://huggingface.co/spaces/openai/whisper" target="_blank" rel="noopener noreferrer">Huggingface.co (Whisper ai)</a>
+          </p>
+
+          <h3>12. Events</h3>
+          <p>
+            <a href="http://www.canva.com" target="_blank" rel="noopener noreferrer">Canva</a>,<br />
+            <a href="http://www.synthesia.io" target="_blank" rel="noopener noreferrer">Text to Video: Synthesia</a>
+          </p>
+
+          <h3>13. Search for all AI tools &amp; Solutions</h3>
+          <p>
+            <a href="https://theresanaiforthat.com/" target="_blank" rel="noopener noreferrer">There is an AI for that</a>
+          </p>
+
+          <h3>14. Flashcards</h3>
+          <p>
+            <a href="https://quizlet.com/sa" target="_blank" rel="noopener noreferrer">Quizlet</a>,<br />
+            <a href="http://www.canva.com" target="_blank" rel="noopener noreferrer">Canva</a>,<br />
+            <a href="http://flashcardmachine.com" target="_blank" rel="noopener noreferrer">Flash Card Machine</a>
+          </p>
+
+          <h3>15. YouTube Video Summarizer</h3>
+          <p>
+            <a href="https://eightify.app/" target="_blank" rel="noopener noreferrer">Eightify</a>
+          </p>
+
+          <hr />
+
+          <h2>Introduction to Prompt Engineering</h2>
+
+          <p>
+            If you’ve ever chatted with ChatGPT or asked an AI tool to create a picture, you’ve already dipped your toes into prompt engineering—even if you didn’t realize it!<br />
+            Prompt engineering sounds fancy, but it’s simply the skill of crafting clear and effective instructions (or “prompts”) to get the best possible responses from artificial intelligence (AI) systems.
+          </p>
+
+          <hr />
+
+          <h2>Prompting Techniques for Any Generative AI</h2>
+
+          <p>
+            When writing prompts for tools like Claude, Grok, ChatGPT, Gemini, always try to include these four components at the beginning of your prompt chat:
+          </p>
+
+          <ol>
+            <li><strong>Role:</strong> Define the role the AI should play (e.g., "You are a tech-savvy person and a history teacher...").</li>
+            <li><strong>Goal:</strong> State the specific task you want the AI to accomplish (e.g., "Give me a lesson plan...").</li>
+            <li><strong>Context:</strong> Provide the necessary background information for the question (e.g., "The students are 10th graders...").</li>
+            <li><strong>Format:</strong> Specify how you want the response to be structured (e.g., "Give me in an Excel format...").</li>
+            <li><strong>Example (optional):</strong> To show the pattern you want, you can say, "The pattern is:..."</li>
+          </ol>
+
+          <p><strong>Key Rule:</strong> Always start a new chat for a new topic to keep the context clean.</p>
+
+          <hr />
+
+          <h2>Prompt Examples</h2>
+
+          <ul>
+            <li>
+              <strong>Flashcard Prompt for EXCEL Format:</strong><br />
+              If you need Flashcard in a certain format that you want, instead of copy pasting to do your bulk upload, you can ask the GenAI to create that format for you. Imagine this in any given scenario:
+              <div class="snippet-box flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                <div class="text-sm text-charcoal-900">
+                  <strong>Prompt:</strong> <code id="prompt-excel">You are a tech savvy person and a &lt;xyz subject Teacher&gt;. create flashcard for flashcard machine website import option. here is the entire content of flashcards: “&lt;paste your topic content here, inside the double quotes &gt;”. Ensure the flashcards MUST be in EXCEL format. For example, the first term must be in row 1, column 1, and its definition in row 1, column 2.</code>
+                </div>
+                <button type="button" onclick="copyTextById('prompt-excel')" class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-forest-800 hover:bg-forest-700 text-cream-50 text-xs font-medium transition-colors">
+                  <span>Copy Prompt</span>
+                </button>
+              </div>
+            </li>
+
+            <li>
+              <strong>Lesson Plan Prompt for NoteBookLM (after uploading a textbook):</strong>
+              <div class="snippet-box flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                <div class="text-sm text-charcoal-900">
+                  <strong>Prompt:</strong> <code id="prompt-lesson">Generate a lesson plan for chapter 1, for pages between 1 and 56: follow BLOOMS taxonomy. make sure to include enrichment activities.</code>
+                </div>
+                <button type="button" onclick="copyTextById('prompt-lesson')" class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-forest-800 hover:bg-forest-700 text-cream-50 text-xs font-medium transition-colors">
+                  <span>Copy Prompt</span>
+                </button>
+              </div>
+            </li>
+
+            <li>
+              <strong>Quiz Worksheet Prompt for NoteBookLM (to extract questions from specific content):</strong>
+              <div class="snippet-box flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                <div class="text-sm text-charcoal-900">
+                  <strong>Prompt:</strong> <code id="prompt-quiz">Generate 10 MCQ style questions from the attached book, chapter 1 between pages 1 and page 56: make sure to give answers only at the end.</code>
+                </div>
+                <button type="button" onclick="copyTextById('prompt-quiz')" class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-forest-800 hover:bg-forest-700 text-cream-50 text-xs font-medium transition-colors">
+                  <span>Copy Prompt</span>
+                </button>
+              </div>
+            </li>
+          </ul>
+
+          <p>🌿</p>
+        </div>
+
+        <!-- Tags Footer -->
+        <div class="mt-8 pt-6 border-t border-cream-300 flex flex-wrap items-center gap-2">
+          <span class="text-xs font-medium text-charcoal-700 mr-1">Tags:</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#learning</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#teaching</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#AI in Education</span>
+        </div>
+
+        <!-- Previous / Next Navigation -->
+        <div class="mt-8 pt-6 border-t border-cream-300 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <button type="button" onclick="navigateTo('post-1')" class="px-4 py-3 rounded-xl bg-cream-100 hover:bg-cream-200 text-charcoal-800 text-sm font-medium border border-cream-300 text-left transition-colors">
+            &larr; Previous: My First Post
+          </button>
+          <button type="button" onclick="navigateTo('post-3')" class="px-4 py-3 rounded-xl bg-forest-800 hover:bg-forest-700 text-cream-50 text-sm font-medium text-right transition-colors">
+            Next: Parental Controls - Safe Browsing &rarr;
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================================================================== -->
+    <!-- SINGLE POST 3: PARENTAL CONTROLS - SAFE BROWSING FOR KIDS             -->
+    <!-- ===================================================================== -->
+    <article id="view-post-3" class="view-section hidden max-w-3xl mx-auto">
+      <div class="mb-6">
+        <button type="button" onclick="navigateTo('all')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cream-50 hover:bg-cream-200 text-forest-900 text-sm font-medium border border-cream-300 transition-colors">
+          <span>&larr; Back to All Posts</span>
+        </button>
+      </div>
+
+      <div class="bg-cream-50 rounded-3xl border border-cream-300 p-7 sm:p-12 shadow-sm">
+        <header class="pb-6 mb-8 border-b border-cream-300">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-forest-800 mb-3">
+            <span class="px-3 py-1 rounded-full bg-forest-50 border border-forest-200">blog</span>
+            <span class="text-charcoal-700 ml-1">March 16, 2025</span>
+          </div>
+          <h1 class="font-serif text-3xl sm:text-4xl font-bold text-forest-900 tracking-tight">
+            Parental Controls - How to setup Safe Browsing for Kids
+          </h1>
+        </header>
+
+        <div class="prose-blog">
+          <h1>How to Block Inappropriate Content and Malware at Your Home or Office Wi-Fi connected devices</h1>
+
+          <p>
+            Whether you are managing a home for your family, or any small space, an unfiltered internet connection can be a liability. From malicious phishing links to inappropriate content, the digital world requires proactive "guardrails."
+          </p>
+
+          <p>
+            For working parents, the internet is a vital tool for our children’s education, but leaving them home with an open connection can be stressful. We can't always be vigilant, and we shouldn't have to be. The goal is to build a home environment where "bad turns" are blocked automatically, allowing kids to focus on their online classes while you focus on your work.
+          </p>
+
+          <p>
+            Here is a simple strategy list to protect your home, ordered from the easiest daily habits to the most powerful "hidden" protections.
+          </p>
+
+          <hr />
+
+          <h2>1. If you wish to block Youtube or any specific website altogether from your home PC/Laptop:</h2>
+          <p>
+            Do the following to completely block YouTube on your Windows PC/Laptop. To do this, you can use a system-level block that prevents access across all web browsers and applications.<br />
+            <strong>Method 1:</strong> Editing the Hosts File (Hardest to Bypass)<br />
+            The most effective free way to block YouTube system-wide is by editing the Windows "hosts" file. This method redirects all requests for YouTube to your own computer, effectively killing the connection.
+          </p>
+
+          <ol>
+            <li>Open Notepad as Administrator: Press the Windows Key, type Notepad, right-click it, and select Run as administrator.</li>
+            <li>
+              Open the Hosts File: In Notepad, go to File &gt; Open and navigate to:<br />
+              <code>C:\Windows\System32\drivers\etc</code><br />
+              Change the file type filter in the bottom-right from "Text Documents (.txt)" to All Files to see the hosts file*.
+            </li>
+            <li>
+              Add Block Lines: Scroll to the bottom and add these lines on new rows:
+              <div class="snippet-box !bg-forest-900 !border-forest-800 !text-cream-50 flex items-start justify-between gap-3">
+                <pre class="text-xs sm:text-sm font-mono leading-relaxed overflow-x-auto"><code id="hosts-lines" class="!bg-transparent !text-cream-50 !p-0">127.0.0.1 youtube.com
+127.0.0.1 www.youtube.com
+127.0.0.1 m.youtube.com</code></pre>
+                <button type="button" onclick="copyTextById('hosts-lines')" class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-forest-700 hover:bg-forest-600 text-cream-50 text-xs font-medium transition-colors">
+                  <span>Copy Lines</span>
+                </button>
+              </div>
+            </li>
+            <li>Save and Refresh: Save the file (Ctrl + S). To make it take effect immediately, open Command Prompt as administrator and type <code>ipconfig /flushdns</code>, then press Enter.</li>
+          </ol>
+
+          <p>
+            <strong>Method 2:</strong> Router-Level Blocking (Network-Wide)<br />
+            If you want to block YouTube on every device in your home (PCs, tablets, and phones), you can do it through your Wi-Fi router.
+          </p>
+
+          <ol>
+            <li>Log in to your router's admin panel (usually by typing 192.168.1.1 or 192.168.0.1 in your browser).</li>
+            <li>Look for Parental Controls, Access Control, or URL Filtering.</li>
+            <li>Add youtube.com to the blocked list or blacklist.</li>
+          </ol>
+
+          <hr />
+
+          <p>
+            Although blocking YouTube solves the root cause problems ariving from it but, blocking it, is always not an option, since YouTube is often their primary source of information and entertainment. You can lock it into a safer mode that filters out mature content and—crucially—<strong>hides the comments section</strong> to prevent interaction with strangers.
+          </p>
+
+          <h2>2. The Clean Video</h2>
+          <p><em>Best for: Managing entertainment and school research during the day.</em></p>
+
+          <ul>
+            <li><strong>On a Smartphone/Tablet:</strong> Open YouTube &gt; Tap <strong>Profile Picture</strong> &gt; <strong>Settings</strong> &gt; <strong>General</strong> &gt; Toggle <strong>Restricted Mode</strong> to <strong>ON</strong>.</li>
+            <li><strong>On a Computer:</strong> Go to YouTube.com &gt; Click your <strong>Profile Picture</strong> &gt; Click <strong>Restricted Mode</strong> at the bottom &gt; Toggle to <strong>ON</strong>.</li>
+          </ul>
+
+          <h2>3. Browser-Level Safe Search</h2>
+          <p><em>Best for: Ensuring school research doesn't lead to accidental adult results.</em></p>
+
+          <p>
+            Even innocent searches can sometimes show explicit images. You can force the browser to only show age-appropriate results.
+          </p>
+
+          <ul>
+            <li><strong>Google SafeSearch:</strong> Go to <a href="https://www.google.com/safesearch" target="_blank" rel="noopener noreferrer">google.com/safesearch</a> and select <strong>Filter</strong>.</li>
+            <li><strong>Secure Browser Settings:</strong> In Chrome or Edge, go to <strong>Settings</strong> &gt; <strong>Privacy &amp; Security</strong> &gt; <strong>Security</strong>. Under "Use Secure DNS," select "Choose a provider" and use a family-safe option (like <code>https://family.cloudflare-dns.com/dns-query</code>).</li>
+          </ul>
+
+          <hr />
+
+          <h2>4. For The Whole House (WIFI Router Method)</h2>
+          <p><em>Best for: Protecting everything at once—Smart TVs, Gaming Consoles, and Laptops, mobiles connected to your wifi.</em></p>
+
+          <p>
+            This is the most efficient method for a working parent. By changing this one setting on your home router, every single device in your house is automatically safe. You don't have to check their phones every day; the "rules" are built into the Wi-Fi itself.
+          </p>
+
+          <p><strong>For Etisalat eLife (and similar) users:</strong></p>
+          <ol>
+            <li><strong>Access your Router:</strong> Open your browser and go to <code>192.168.1.1</code>.</li>
+            <li><strong>Find the Network Settings:</strong> Click <strong>Interface Mgmt</strong> (top) then <strong>BRouted Interfaces</strong> (left).</li>
+            <li><strong>Update the Safety Numbers:</strong> Find your active connection (like <strong>brvlan9</strong>) and change the <strong>DNS Relay Source</strong> to <strong>User Defined</strong>.</li>
+            <li>
+              <strong>Enter these Addresses:</strong>
+              <ul>
+                <li><strong>Primary DNS:</strong> <code>1.1.1.3</code></li>
+                <li><strong>Secondary DNS:</strong> <code>1.0.0.3</code></li>
+              </ul>
+            </li>
+            <li><strong>Apply &amp; Save:</strong> Once saved, your home network is officially a "Safe Zone."</li>
+          </ol>
+
+          <hr />
+
+          <p><em>Your settings may vary slightly based on your Router and Internet provider</em></p>
+
+          <h2>Peace of Mind Checklist</h2>
+          <p>
+            Before you head to work, you can verify if your "guardrails" are active by visiting these test sites on any home device. If they <strong>do not load</strong>, your settings are working:
+          </p>
+          <ul>
+            <li><strong>Malware Test:</strong> <a href="https://malware.testcategory.com/" target="_blank" rel="noopener noreferrer">https://malware.testcategory.com/</a></li>
+            <li><strong>Adult Content Test:</strong> <a href="https://nudity.testcategory.com/" target="_blank" rel="noopener noreferrer">https://nudity.testcategory.com/</a></li>
+          </ul>
+
+          <p><em>Stay safe, stay secure, and let the technology do the supervising for you!</em></p>
+        </div>
+
+        <!-- Tags Footer -->
+        <div class="mt-8 pt-6 border-t border-cream-300 flex flex-wrap items-center gap-2">
+          <span class="text-xs font-medium text-charcoal-700 mr-1">Tags:</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#learning</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#parenting control</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#kids safe browsing</span>
+        </div>
+
+        <!-- Previous / Next Navigation -->
+        <div class="mt-8 pt-6 border-t border-cream-300 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <button type="button" onclick="navigateTo('post-2')" class="px-4 py-3 rounded-xl bg-cream-100 hover:bg-cream-200 text-charcoal-800 text-sm font-medium border border-cream-300 text-left transition-colors">
+            &larr; Previous: AI in Education - For Teachers
+          </button>
+          <button type="button" onclick="navigateTo('post-4')" class="px-4 py-3 rounded-xl bg-forest-800 hover:bg-forest-700 text-cream-50 text-sm font-medium text-right transition-colors">
+            Next: IGCSE Computer Science 0478 &rarr;
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================================================================== -->
+    <!-- SINGLE POST 4: IGCSE COMPUTER SCIENCE 0478                            -->
+    <!-- ===================================================================== -->
+    <article id="view-post-4" class="view-section hidden max-w-3xl mx-auto">
+      <div class="mb-6">
+        <button type="button" onclick="navigateTo('all')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cream-50 hover:bg-cream-200 text-forest-900 text-sm font-medium border border-cream-300 transition-colors">
+          <span>&larr; Back to All Posts</span>
+        </button>
+      </div>
+
+      <div class="bg-cream-50 rounded-3xl border border-cream-300 p-7 sm:p-12 shadow-sm">
+        <header class="pb-6 mb-8 border-b border-cream-300">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-forest-800 mb-3">
+            <span class="px-3 py-1 rounded-full bg-forest-50 border border-forest-200">blog</span>
+            <span class="px-3 py-1 rounded-full bg-forest-50 border border-forest-200">education</span>
+            <span class="text-charcoal-700 ml-1">August 8, 2025</span>
+          </div>
+          <h1 class="font-serif text-3xl sm:text-4xl font-bold text-forest-900 tracking-tight">
+            IGCSE Computer Science 0478
+          </h1>
+        </header>
+
+        <div class="prose-blog">
+          <div class="bg-forest-50 border border-forest-200 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-wider text-forest-500 block mb-1">
+                Study Resource Hub
+              </span>
+              <h2 class="!mt-0 !mb-2 !text-xl font-serif text-forest-900">
+                Computer Science IGCSE Gr 9 (0478)
+              </h2>
+              <p class="!mb-0 text-sm text-charcoal-700">
+                Refer <a href="https://gulnazkhatib.notion.site/Computer-Science-IGCSE-Gr-9-0478-210c4a6e6b5b80269586c09a0e5c7688?source=copy_link" target="_blank" rel="noopener noreferrer">0478 Notion</a>
+              </p>
+            </div>
+            <a href="https://gulnazkhatib.notion.site/Computer-Science-IGCSE-Gr-9-0478-210c4a6e6b5b80269586c09a0e5c7688?source=copy_link" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-forest-800 hover:bg-forest-700 !text-cream-50 !no-underline text-sm font-medium shadow-sm transition-colors">
+              <span>Refer 0478 Notion</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 3h7v7m0-7L10 14M5 7v12h12" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tags Footer -->
+        <div class="mt-8 pt-6 border-t border-cream-300 flex flex-wrap items-center gap-2">
+          <span class="text-xs font-medium text-charcoal-700 mr-1">Tags:</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#learning</span>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-cream-200 text-charcoal-800">#Computer Science</span>
+        </div>
+
+        <!-- Previous / Next Navigation -->
+        <div class="mt-8 pt-6 border-t border-cream-300 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <button type="button" onclick="navigateTo('post-3')" class="px-4 py-3 rounded-xl bg-cream-100 hover:bg-cream-200 text-charcoal-800 text-sm font-medium border border-cream-300 text-left transition-colors">
+            &larr; Previous: Parental Controls - Safe Browsing
+          </button>
+          <button type="button" onclick="navigateTo('all')" class="px-4 py-3 rounded-xl bg-forest-800 hover:bg-forest-700 text-cream-50 text-sm font-medium text-right transition-colors">
+            Back to All Posts &rarr;
+          </button>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Clean Footer (No download buttons) -->
+  <footer class="bg-cream-200/70 border-t border-cream-300 mt-14">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-charcoal-700">
+      <div class="flex items-center gap-3 text-center sm:text-left">
+        <svg class="w-10 h-10 shrink-0 text-charcoal-900 hidden sm:block" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M77.5 34.5C72.2 28.2 64.5 24.5 55.2 24.5C37.8 24.5 25.5 38.2 25.5 56.5C25.5 74.8 37.8 88.5 55.5 88.5C64.2 88.5 71.4 85.4 76.2 80.2V62.5H62.5V59.2H84.5V62.5H81.2V88.5H78.2L77.1 82.8C71.5 88.5 63.8 92 54.5 92C33.5 92 18.5 76.8 18.5 56.5C18.5 36.2 33.8 21 54.8 21C63.8 21 71.5 24.2 76.8 28.8L78.2 22.5H81.2V36.5H78.2L77.5 34.5Z" fill="currentColor"/>
+          <path d="M44.5 43.5H54.5V45.4H51.8V56.4L62.6 45.4H59.4V43.5H68.8V45.4H65.8L55.6 55.6L67.4 69.6H70.4V71.5H60.2V69.6H62.6L52.8 58.1L51.8 59.1V69.6H54.5V71.5H44.5V69.6H47.2V45.4H44.5V43.5Z" fill="currentColor"/>
+          <text x="60" y="109" text-anchor="middle" fill="currentColor" font-family="Inter, system-ui, sans-serif" font-size="8.6" font-weight="500" letter-spacing="2.6">GULNAZ KHATIB</text>
+        </svg>
+        <div>
+          <p class="font-medium text-forest-900">&copy; 2025 Gulnaz Khatib</p>
+          <p class="text-xs text-charcoal-700/80 mt-0.5">A space for learning, creating, reflecting, and growing across disciplines. 🌿</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/gulnazkhatib/blogsite" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-forest-800 hover:text-forest-600 font-medium transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+          </svg>
+          <span>gulnazkhatib/blogsite</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Error-Safe Vanilla DOM Controller -->
+  <script>
+    function showToast(message) {
+      try {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+        if (!toast || !toastMsg) return;
+        toastMsg.textContent = message;
+        toast.classList.remove('hidden');
+        toast.classList.add('flex');
+        clearTimeout(window._toastTimer);
+        window._toastTimer = setTimeout(function () {
+          toast.classList.add('hidden');
+          toast.classList.remove('flex');
+        }, 2600);
+      } catch (e) {}
+    }
+
+    function copyTextById(elementId) {
+      try {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        const text = el.innerText || el.textContent || '';
+
+        // Sandbox-friendly fallback copy using execCommand('copy')
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        let copied = false;
+        try {
+          copied = document.execCommand('copy');
+        } catch (err) {
+          copied = false;
+        }
+        document.body.removeChild(textarea);
+
+        if (copied) {
+          showToast('Copied to clipboard!');
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            showToast('Copied to clipboard!');
+          }).catch(function () {
+            showToast('Unable to copy automatically.');
+          });
+        }
+      } catch (e) {}
+    }
+
+    function toggleMobileMenu() {
+      try {
+        const menu = document.getElementById('mobile-menu');
+        const openIcon = document.getElementById('menu-icon-open');
+        const closeIcon = document.getElementById('menu-icon-close');
+        if (!menu) return;
+        const isHidden = menu.classList.contains('hidden');
+        if (isHidden) {
+          menu.classList.remove('hidden');
+          if (openIcon) openIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          menu.classList.add('hidden');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      } catch (e) {}
+    }
+
+    function updateNavActiveState(activeKey) {
+      try {
+        const desktopBtns = document.querySelectorAll('.nav-btn');
+        desktopBtns.forEach(function (btn) {
+          if (btn.getAttribute('data-nav') === activeKey) {
+            btn.className = 'nav-btn px-3.5 py-2 rounded-xl text-sm font-medium bg-forest-800 text-cream-50 transition-colors';
+          } else {
+            btn.className = 'nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-charcoal-800 hover:bg-forest-50 hover:text-forest-800 transition-colors';
+          }
+        });
+
+        const mobileBtns = document.querySelectorAll('.mobile-nav-btn');
+        mobileBtns.forEach(function (btn) {
+          if (btn.getAttribute('data-nav') === activeKey) {
+            btn.className = 'mobile-nav-btn w-full text-left block px-3.5 py-2.5 rounded-xl text-base font-medium bg-forest-800 text-cream-50';
+          } else {
+            btn.className = 'mobile-nav-btn w-full text-left block px-3.5 py-2.5 rounded-xl text-base font-medium text-charcoal-800 hover:bg-forest-50';
+          }
+        });
+      } catch (e) {}
+    }
+
+    function filterTopic(topic) {
+      try {
+        const pills = document.querySelectorAll('.topic-pill');
+        pills.forEach(function (pill) {
+          if (pill.getAttribute('data-topic') === topic) {
+            pill.className = 'topic-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-forest-800 text-cream-50 border border-forest-800 transition-colors';
+          } else {
+            pill.className = 'topic-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-50 text-charcoal-700 border border-cream-300 hover:border-forest-500 transition-colors';
+          }
+        });
+
+        const cards = document.querySelectorAll('.post-card');
+        let visibleCount = 0;
+        cards.forEach(function (card) {
+          const cat = card.getAttribute('data-category');
+          if (topic === 'all' || cat === topic) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        const countLabel = document.getElementById('post-count-label');
+        if (countLabel) {
+          countLabel.textContent = visibleCount + (visibleCount === 1 ? ' Post' : ' Posts');
+        }
+      } catch (e) {}
+    }
+
+    function navigateTo(target) {
+      try {
+        const allViews = [
+          'view-feed',
+          'view-about',
+          'view-post-1',
+          'view-post-2',
+          'view-post-3',
+          'view-post-4'
+        ];
+
+        allViews.forEach(function (id) {
+          const el = document.getElementById(id);
+          if (el) el.classList.add('hidden');
+        });
+
+        const heroBanner = document.getElementById('hero-banner');
+        const categoryBanner = document.getElementById('category-banner');
+        const topicFilters = document.getElementById('topic-filters');
+        const categoryBadge = document.getElementById('category-badge');
+        const categoryTitle = document.getElementById('category-title');
+        const categorySubtitle = document.getElementById('category-subtitle');
+        const gridHeading = document.getElementById('grid-heading');
+
+        if (target === 'home' || target === 'all' || target === 'education' || target === 'safety') {
+          const feedEl = document.getElementById('view-feed');
+          if (feedEl) feedEl.classList.remove('hidden');
+
+          if (target === 'home') {
+            if (heroBanner) heroBanner.classList.remove('hidden');
+            if (categoryBanner) categoryBanner.classList.add('hidden');
+            if (gridHeading) gridHeading.textContent = 'Latest Writings & Resources';
+            filterTopic('all');
+            updateNavActiveState('home');
+          } else if (target === 'all') {
+            if (heroBanner) heroBanner.classList.add('hidden');
+            if (categoryBanner) categoryBanner.classList.remove('hidden');
+            if (topicFilters) topicFilters.classList.remove('hidden');
+            if (categoryBadge) categoryBadge.textContent = 'Complete Archive';
+            if (categoryTitle) categoryTitle.textContent = 'All Posts';
+            if (categorySubtitle) categorySubtitle.textContent = 'Every reflection, teaching guide, and digital safety resource published here.';
+            if (gridHeading) gridHeading.textContent = 'All Published Posts';
+            filterTopic('all');
+            updateNavActiveState('all');
+          } else if (target === 'education') {
+            if (heroBanner) heroBanner.classList.add('hidden');
+            if (categoryBanner) categoryBanner.classList.remove('hidden');
+            if (topicFilters) topicFilters.classList.add('hidden');
+            if (categoryBadge) categoryBadge.textContent = 'Category: Education';
+            if (categoryTitle) categoryTitle.textContent = 'Education & Pedagogy';
+            if (categorySubtitle) categorySubtitle.textContent = 'Practical AI tools for teachers, prompt engineering workflows, and IGCSE Computer Science resources.';
+            if (gridHeading) gridHeading.textContent = 'Education Posts';
+            filterTopic('education');
+            updateNavActiveState('education');
+          } else if (target === 'safety') {
+            if (heroBanner) heroBanner.classList.add('hidden');
+            if (categoryBanner) categoryBanner.classList.remove('hidden');
+            if (topicFilters) topicFilters.classList.add('hidden');
+            if (categoryBadge) categoryBadge.textContent = 'Category: Digital Safety';
+            if (categoryTitle) categoryTitle.textContent = 'Tech & Safe Browsing';
+            if (categorySubtitle) categorySubtitle.textContent = 'Practical guardrails for conscious tech use and home network parental controls.';
+            if (gridHeading) gridHeading.textContent = 'Tech & Safety Posts';
+            filterTopic('safety');
+            updateNavActiveState('safety');
+          }
+        } else if (target === 'about') {
+          const aboutEl = document.getElementById('view-about');
+          if (aboutEl) aboutEl.classList.remove('hidden');
+          updateNavActiveState('about');
+        } else if (target.indexOf('post-') === 0) {
+          const postEl = document.getElementById('view-' + target);
+          if (postEl) postEl.classList.remove('hidden');
+          updateNavActiveState('all');
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e) {}
+    }
+  </script>
+</body>
+</html>
